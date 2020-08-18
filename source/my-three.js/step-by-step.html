@@ -16,7 +16,6 @@
 </head>
 
 <body>
-    View source to know the preparation.
     <!-- Div which will hold the Output -->
     <div id="WebGL-output">
     </div>
@@ -26,7 +25,33 @@
 
         // once everything is loaded, we run our Three.js stuff.
         function init() {
-            // here we'll put the Three.js stuff
+            // create a scene, that will hold all our elements such as objects, cameras and lights.
+            var scene = new THREE.Scene();
+
+            // create a camera, which defines where we're looking at.
+            var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+            // create a render and set the size
+            var renderer = new THREE.WebGLRenderer();
+            renderer.setClearColorHex();
+            renderer.setClearColor(new THREE.Color(0xEEEEEE));
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            // show axes in the screen
+            var axes = new THREE.AxisHelper(20);
+            scene.add(axes);
+
+            // position and point the camera to the center of the scene
+            camera.position.x = -30;
+            camera.position.y = 30;
+            camera.position.z = 40;
+            camera.lookAt(scene.position);
+
+            // add the output of the renderer to the html element
+            document.getElementById("WebGL-output").appendChild(renderer.domElement);
+
+            // render the scene
+            renderer.render(scene, camera);
         }
         window.onload = init
 

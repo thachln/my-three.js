@@ -29,6 +29,12 @@
             var scene = new THREE.Scene();
 
             // create a camera, which defines where we're looking at.
+            // new THREE.PerspectiveCamera( fieldOfViewAngle, aspect, near, far );
+            // The first parameter determines the vertical extent of the view volume, given as an angle measured in degrees.
+            // The aspect is the ratio between the horizontal and vertical extents; it should usually be set to the width of the canvas divided by its height.
+            // And near and far give the z-limits on the view volume as distances from the camera.
+            // For a perspective projection, both must be positive, with near less than far.
+            // Refer: http://math.hws.edu/graphicsbook/c5/s1.html
             var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
 
             // create a render and set the size
@@ -41,6 +47,19 @@
             var axes = new THREE.AxisHelper(20);
             scene.add(axes);
 
+            // create the ground plane
+            var planeGeometry = new THREE.PlaneGeometry(60, 20);
+            var planeMaterial = new THREE.MeshBasicMaterial({ color: 0xcccccc });
+            var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+
+            // rotate and position the plane
+            plane.rotation.x = -0.5 * Math.PI;
+            plane.position.x = 15;
+            plane.position.y = 0;
+            plane.position.z = 0;
+
+            // add the plane to the scene
+            scene.add(plane);
             // position and point the camera to the center of the scene
             camera.position.x = -30;
             camera.position.y = 30;

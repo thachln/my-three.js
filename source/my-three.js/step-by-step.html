@@ -71,6 +71,19 @@
             // add the cube to the scene
             scene.add(cube);
 
+            // create a sphere
+            var sphereGeometry = new THREE.SphereGeometry(4, 20, 20);
+            var sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x7777ff, wireframe: true });
+            var sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+
+            // position the sphere
+            sphere.position.x = 20;
+            sphere.position.y = 4;
+            sphere.position.z = 2;
+
+            // add the sphere to the scene
+            scene.add(sphere);
+
             // add the plane to the scene
             scene.add(plane);
             // position and point the camera to the center of the scene

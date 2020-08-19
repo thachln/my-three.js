@@ -4,7 +4,7 @@
 
 <head>
     <title>Demo Three.js from scratch</title>
-    <script type="text/javascript" src="../libs/three.js"></script>
+    <script type="text/javascript" src="./libs/three.js"></script>
     <style>
         body {
             /* set margin to 0 and overflow to hidden, to
@@ -108,10 +108,17 @@
             // add the output of the renderer to the html element
             document.getElementById("WebGL-output").appendChild(renderer.domElement);
 
-            // render the scene
+            // call the render function
             renderScene();
 
             function renderScene() {
+                // rotate the cube around its axes
+                cube.rotation.x += 0.02;
+                cube.rotation.y += 0.02;
+                cube.rotation.z += 0.02;
+
+                // render using requestAnimationFrame
+                requestAnimationFrame(renderScene);
                 renderer.render(scene, camera);
             }
         }
